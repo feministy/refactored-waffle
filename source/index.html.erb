@@ -4,7 +4,7 @@ per_page: 10
 ---
 
 <% page_articles.each_with_index do |article, i| %>
-  <h2 class="is-size-3 has-text-primary"><%= article.title %></h2>
+  <h2 class="is-size-4 title"><%= article.title %></h2>
   <div class="content">
     <span class="is-size-6 has-text-grey-light"><%= article.date.strftime("%B %e, %Y") %></span>
     <% article.tags.each do |tag| %>
@@ -12,6 +12,9 @@ per_page: 10
     <% end %>
   </div>
   <%= article.body %>
+  <div class="section">
+    <hr>
+  </div>
 <% end %>
 
 <% if paginate && num_pages > 1 %>
