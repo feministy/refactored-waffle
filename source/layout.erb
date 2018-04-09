@@ -1,40 +1,80 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" />
-    <meta http-equiv='X-UA-Compatible' content='IE=edge;chrome=1' />
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Blog Title<%= ' - ' + current_article.title unless current_article.nil? %></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+    <link rel="stylesheet" href="https://use.typekit.net/gdp6spz.css">
+    <link rel="stylesheet" href="style.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+
+    <title>sew • feministy<%= ' • ' + current_article.title unless current_article.nil? %></title>
     <%= feed_tag :atom, "#{blog.options.prefix.to_s}/feed.xml", title: "Atom Feed" %>
   </head>
   <body>
-
-    <div id="main" role="main">
-      <%= yield %>
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title">
+          <span class="script">
+            sew
+          </span>
+          <span class="decorative has-text-primary">
+            E
+          </span>
+          <span class="script script-bold">
+            feministy
+          </span>
+        <h2 class="subtitle has-text-grey-light">
+          Ruminations on garment sewing from a sometimes sewist who's also a sloth enthusiast and software engineer.
+        </h2>
+        </h1>
+      </div>
     </div>
+  </section>
 
-    <aside>
-      <h2>Recent Articles</h2>
-      <ol>
-        <% blog.articles[0...10].each do |article| %>
-          <li><%= link_to article.title, article %> <span><%= article.date.strftime('%b %e') %></span></li>
-        <% end %>
-      </ol>
+  <section class="section">
+    <div class="container">
+      <div class="columns">
+        <div class="column">
+          <aside class="menu">
+            <p class="menu-label">
+              About
+            </p>
+            <ul class="menu-list">
+              <li><a href="/about">Hi, I'm Liz!</a></li>
+              <li><a href="">Source code</a></li>
+            </ul>
 
-      <h2>Tags</h2>
-      <ol>
-        <% blog.tags.each do |tag, articles| %>
-          <li><%= link_to "#{tag} (#{articles.size})", tag_path(tag) %></li>
-        <% end %>
-      </ol>
+            <p class="menu-label">
+              Recent posts
+            </p>
+            <ul class="menu-list">
+              <% blog.articles[0...5].each do |article| %>
+                <li><%= link_to article.title, article %></span></li>
+              <% end %>
+            </ul>
 
-      <h2>By Year</h2>
-      <ol>
-        <% blog.articles.group_by {|a| a.date.year }.each do |year, articles| %>
-          <li><%= link_to "#{year} (#{articles.size})", blog_year_path(year) %></li>
-        <% end %>
-      </ol>
-    </aside>
+            <p class="menu-label">
+              Tags
+            </p>
+            <ul class="menu-list">
+              <% blog.tags.each do |tag, articles| %>
+                <li><%= link_to "#{tag} (#{articles.size})", tag_path(tag) %></li>
+              <% end %>
+            </ul>
+          </aside>
+        </div>
+
+        <div class="column is-three-quarters">
+          <div class="content">
+            <%= yield %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
   </body>
 </html>
+

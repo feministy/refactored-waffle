@@ -1,0 +1,17 @@
+.script {
+  font-family: "beloved-script";
+  font-weight: 400px;
+  font-size: 6rem;
+}
+
+.script.script-bold {
+  font-family: "beloved-script";
+  font-weight: 400px;
+  font-size: 6rem;
+}
+
+.decorative {
+  font-family: "beloved-ornaments";
+  font-size: 3rem;
+  font-weight: 400px;
+}
